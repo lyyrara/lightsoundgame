@@ -24,7 +24,7 @@ function startGame(){
     progress = 0;
     gamePlaying = true;
     strike = 0;
-    timeleft = 60;
+    timeleft = 20;
     // swap the Start and Stop buttons
     document.getElementById("startBtn").classList.add("hidden");
     document.getElementById("stopBtn").classList.remove("hidden");
