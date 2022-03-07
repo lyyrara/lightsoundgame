@@ -60,7 +60,7 @@ button {
 #button5 {
     background: violet;
 }
-#button5:active, #button4.lit {
+#button5:active, #button5.lit {
     background:purple;
 /* images and videos max out at full width */
 img,

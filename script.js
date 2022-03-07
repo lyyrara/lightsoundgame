@@ -1,7 +1,9 @@
 /* If you're feeling fancy you can add interactivity 
     to your site with Javascript */
 //Global Variables
-var pattern = [2, 2, 4, 3, 2, 1, 2, 5, 4];
+var pattern = [];
+var patternlength = 8;
+var button_num = 5;
 var progress = 0; 
 var gamePlaying = false;
 var tonePlaying = false;
@@ -11,12 +13,18 @@ const cluePauseTime = 333; //how long to pause in between clues
 const nextClueWaitTime = 1000; //how long to wait before starting playback of the clue sequence
 var guessCounter = 0;
 var strike = 0;
+var timeleft;
+var timer;
 
 function startGame(){
     //initialize game variables
+    for(let i=0; i< patternlength; i++){
+      pattern[i] = Math.floor(Math.random() * button_num + 1);
+    }
     progress = 0;
     gamePlaying = true;
     strike = 0;
+    timeleft = 20;
     // swap the Start and Stop buttons
     document.getElementById("startBtn").classList.add("hidden");
     document.getElementById("stopBtn").classList.remove("hidden");
@@ -27,7 +35,7 @@ function stopGame(){
     gamePlaying = false;
     document.getElementById("startBtn").classList.remove("hidden");
     document.getElementById("stopBtn").classList.add("hidden");
-    
+
 }
 
 // Sound Synthesis Functions
@@ -87,17 +95,19 @@ function playSingleClue(btn){
   }
 }
 
+
+
 function playClueSequence(){
   guessCounter = 0;
-  clueHoldTime = 1000;
+  clueHoldTime = clueHoldTime - 50;
   let delay = nextClueWaitTime; //set delay to initial wait time
   for(let i=0;i<=progress;i++){ // for each clue that is revealed so far
     console.log("play single clue: " + pattern[i] + " in " + delay + "ms")
-    setTimeout(playSingleClue,delay,pattern[i]) // set a timeout to play that clue
-    clueHoldTime = clueHoldTime - 100;
-    delay += clueHoldTime 
-    delay += cluePauseTime;
+    setTimeout(playSingleClue,delay,pattern[i]); // set a timeout to play that clue
+    delay += clueHoldTime ;
+    delay += cluePauseTime; 
   }
+  var timer = setInterval(countDown(), 2000);
 }
 
 function loseGame(){
@@ -111,7 +121,7 @@ function winGame(){
 }
 
 function guess(btn){
-  console.log("user guessed: " + btn);
+  console.log("user guessed: " + btn);var timer = setInterval(countDown(), 1000);
   if(!gamePlaying){
     return;
   }
@@ -140,6 +150,18 @@ function guess(btn){
       loseGame();
     }else{
       playClueSequence();
+      alert("Wrong! Attempts left:" + (3 - strike));
     }
   }
 }
+
+function countDown(){
+  document.getElementById("clock").innerHTML = "Countdown: " + timeleft +"s";
+  timeleft -= 1;
+  if(timeleft <= 0){
+    loseGame();
+    clearInterval(timer); 
+  }
+  
+}
+
