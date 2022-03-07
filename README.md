@@ -39,10 +39,7 @@ The following **additional** features are implemented:
 ## Video Walkthrough (GIF)
 
 If you recorded multiple GIFs for all the implemented features, you can add them here:
-![](gif1-link-here)
-![](gif2-link-here)
-![](gif3-link-here)
-![](gif4-link-here)
+![soundgame](https://user-images.githubusercontent.com/97574372/157124650-9b305c0a-132e-460f-8b6f-29dae4af0732.gif)
 
 ## Reflection Questions
 1. If you used any outside resources to help complete your submission (websites, books, people, etc) list them here. 
@@ -58,6 +55,7 @@ After completing this submission, I became more curious about how much one could
 4. If you had a few more hours to work on this project, what would you spend them doing (for example: refactoring certain functions, adding additional features, etc). Be specific. (recommended 100 - 300 words) 
 Set up difficulty level for the game, like easy mode, hard mode with different numbers of patterns. 
 Keep scores of the player. Like if you win the first round, you can gain 5 points. If you pass the round two, you can gain 10 points. You can get more points as the game round increases. And we can keep the record of the game. 
+
 
 
 
